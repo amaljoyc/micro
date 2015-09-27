@@ -1,4 +1,5 @@
 import curses
+import sys
 
 
 class MicroEditor:
@@ -34,11 +35,17 @@ class MicroEditor:
 
     def save(self):
         y, x = self.window.getmaxyx()
-        f = open('untitled.txt', 'w')
+        f = open(self.get_filename(), 'w')
         for y in range(y):
             f.write(self.window.instr(y, 0).rstrip())
             f.write('\n')
         f.close()
+
+    def get_filename(self):
+        if(len(sys.argv)) > 1:
+            return sys.argv[1]
+        else:
+            return 'untitled.txt'
 
 
 if __name__ == '__main__':
