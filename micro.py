@@ -33,6 +33,9 @@ class MicroEditor:
             elif key < 127:
                 self.window.addch(chr(key))
 
+            else:
+                self.support_arrow_keys(key)
+
     def save(self):
         y, x = self.window.getmaxyx()
         f = open(self.get_filename(), 'w')
@@ -46,6 +49,17 @@ class MicroEditor:
             return sys.argv[1]
         else:
             return 'untitled.txt'
+
+    def support_arrow_keys(self, key):
+        y, x = self.window.getyx()  # current cursor position
+        if key == 258:  # down
+            self.window.move(y + 1, x)
+        elif key == 259:  # up
+            self.window.move(y - 1, x)
+        elif key == 260:  # left
+            self.window.move(y, x - 1)
+        elif key == 261:  # right
+            self.window.move(y, x + 1)
 
 
 if __name__ == '__main__':
