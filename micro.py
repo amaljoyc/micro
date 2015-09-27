@@ -6,6 +6,7 @@ class MicroEditor:
     def __init__(self):
         self.window = curses.initscr()
         curses.noecho()
+        self.window.keypad(1)
         self.window.addstr("Welcome to micro text editor!!\n\n")
 
     def __enter__(self):
@@ -17,12 +18,19 @@ class MicroEditor:
     def edit(self):
         while True:
             key = self.window.getch()
-            if key == ord("q"):
-                break
-            elif key == 127:
+            if key == 27:
+                cmd = self.window.getch()
+                if cmd == ord('q'):  # To quit: (ESC and q) OR (ALT + q)
+                    break
+                elif cmd == ord('s'):
+                    # TODO: save
+                    self.window.addstr('Saving...')
+
+            elif key == curses.KEY_BACKSPACE:
                 y, x = self.window.getyx()
                 self.window.delch(y, x-1)
-            else:
+
+            elif key < 127:
                 self.window.addch(chr(key))
 
 
