@@ -1,1 +1,50 @@
-Welcome to micro text editor!!                                                                                                                                                                
+Welcome to micro text editor!!
+
+Hello
+                there
+this is a test
+
+
+and
+   it
+      works
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

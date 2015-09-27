@@ -22,7 +22,7 @@ class MicroEditor:
                 cmd = self.window.getch()
                 if cmd == ord('q'):  # To quit: (ESC and q) OR (ALT + q)
                     break
-                elif cmd == ord('s'):
+                elif cmd == ord('s'):  # To save: (ESC and s) OR (ALT + s)
                     self.save()
 
             elif key == curses.KEY_BACKSPACE:
@@ -33,10 +33,12 @@ class MicroEditor:
                 self.window.addch(chr(key))
 
     def save(self):
-        y, x = self.window.getbegyx()
-        s = self.window.instr(y, x)
+        y, x = self.window.getmaxyx()
         f = open('untitled.txt', 'w')
-        f.write(s)
+        for y in range(y):
+            f.write(self.window.instr(y, 0).rstrip())
+            f.write('\n')
+        f.close()
 
 
 if __name__ == '__main__':
